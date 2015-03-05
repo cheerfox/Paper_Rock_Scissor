@@ -1,49 +1,42 @@
-#Paper Rock Scissors game
+#Paper Rock Scissors game 
+
+CHOICES = {'p' => 'Papper','r' => 'Rock', 's' => 'Scissors'}
 
 def say(msg)
   puts "#{msg}"
 end
 
 def user_choose
-  say "Choose P/R/S"
-  gets.chomp
+  begin
+    say "Choose P/R/S for Papper/Rock/Scissors"
+    user_choice = gets.chomp.downcase
+  end until CHOICES.keys.include?(user_choice)
+  say "You choose #{CHOICES[user_choice]}"
+  user_choice
 end
 
 def computer_choose
-  chooses = ['P', 'R', 'S']
-  choose = chooses [rand(0..2)]
-  say "Computer choose #{choose}"
-  choose
+  computer_choice = CHOICES.keys.sample
+  say "Computer choose #{CHOICES[computer_choice]}"
+  computer_choice
 end
 
-def determine_the_winner(user, computer)
-  if user == 'P' && computer == 'P'
-    say "It's a Tie!!"
-  elsif user == 'P' && computer == 'R'
+def determine_the_winner(user_choice, computer_choice)
+  if user_choice == computer_choice
+    say "It's tie!!"
+  elsif user_choice == 'p' && computer_choice == 'r'|| user_choice == 's' && computer_choice == 'p'|| user_choice == 'r' && computer_choice == 's'
     say "You Win!!"
-  elsif user == 'P' && computer == 'S'
-    say "You Lose!!"
-  elsif user == 'S' && computer == 'S'
-    say "It's a Tie!!"
-  elsif user == 'S' && computer == 'P'
-    say "You Win!!"
-  elsif user == 'S' && computer == 'R'
-    say "You Lose!!" 
-  elsif user == 'R' && computer == 'R'
-    say "It's a Tie!!"
-  elsif user == 'R' && computer == 'S'
-    say "You Win!!"
-  elsif user == 'R' && computer == 'P'
+  else 
     say "You Lose!!"
   end
 end
 
 say "Welcome to play Papper, Rock, Scissors!!"
-begin
+loop do
   determine_the_winner(user_choose, computer_choose)
   say "Play again?? Y/N"
-  leave = true if gets.chomp == 'N'
-end while !leave
+  break if gets.chomp.downcase == 'n'
+end
 
 
 
