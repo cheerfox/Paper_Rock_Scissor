@@ -1,6 +1,6 @@
 #Paper Rock Scissors game 
 
-CHOICES = {'p' => 'Papper','r' => 'Rock', 's' => 'Scissors'}
+CHOICES = {'p' => 'Paper','r' => 'Rock', 's' => 'Scissors'}
 
 def say(msg)
   puts "#{msg}"
@@ -8,7 +8,7 @@ end
 
 def user_choose
   begin
-    say "Choose P/R/S for Papper/Rock/Scissors"
+    say "Choose P/R/S for Paper/Rock/Scissors"
     user_choice = gets.chomp.downcase
   end until CHOICES.keys.include?(user_choice)
   say "You choose #{CHOICES[user_choice]}"
@@ -31,7 +31,7 @@ def determine_the_winner(user_choice, computer_choice)
   end
 end
 
-say "Welcome to play Papper, Rock, Scissors!!"
+say "Welcome to play Paper, Rock, Scissors!!"
 loop do
   determine_the_winner(user_choose, computer_choose)
   say "Play again?? Y/N"
