@@ -31,11 +31,21 @@ def determine_the_winner(user_choice, computer_choice)
   end
 end
 
+def play_game
+  user_choice = user_choose
+  computer_choice = computer_choose
+  determine_the_winner(user_choice, computer_choice)
+end
+
+def play_again?
+  say "Want to play again??  Y/N"
+  gets.chomp.downcase != 'n'
+end
+
 say "Welcome to play Paper, Rock, Scissors!!"
 loop do
-  determine_the_winner(user_choose, computer_choose)
-  say "Play again?? Y/N"
-  break if gets.chomp.downcase == 'n'
+  play_game
+  break unless play_again?
 end
 
 
